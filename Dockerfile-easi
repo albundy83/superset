@@ -1,0 +1,14 @@
+FROM docker.docapost.tech/multicloud/superset-easi:base-0.0.1
+
+USER root
+
+# Install additional Python packages (used to fix bootstrap psycopg2 installation issue)
+RUN uv pip install --no-cache-dir \
+    --index-url https://outils.docapost.tech/nexus/repository/pypi-central/simple \
+    psycopg2-binary \
+    authlib \
+    clickhouse-connect \
+    flask-cors \
+    Pillow
+
+USER superset
